@@ -17,5 +17,30 @@ def log_in():
     print("Too many incorrect tries. Could not log in")
     return False
 
+def run_atm(withdrawal_amount):  # this is a 'main' function
+    print("Welcome to the ATM!")
+    successful_login = log_in()
+    balance = None
+    if successful_login:
+        balance = 100
+        try:
+            if withdrawal_amount > balance:
+                raise ValueError("Insufficient funds on your account")
+
+            balance = balance - withdrawal_amount
+            print("Take the money.\n Your new balance is {}".format(balance))
+
+        except ValueError as err:
+            raise ValueError(err)
+
+
+        else:
+            print("Thank you for using ATM")
+            return balance
+    else:
+        print("Exiting Program")
+        return balance
+
+
 
 
